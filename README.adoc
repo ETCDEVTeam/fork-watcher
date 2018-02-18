@@ -1,0 +1,56 @@
+Fork Watcher
+============
+
+Runs different clients, such as Classic Geth and Parity, using multiple different versions and provides current status of
+synchronization:
+
+- current blockchain height
+- block hash at specified height
+- for each used client instance
+
+Currently configured for ECIP-1017 fork at block 5,000,000 with:
+
+- Geth 3.5.86 - should fail to wrong fork, doesn't support HF
+- Geth 4.0.0 - first with HF support
+- Geth 4.1.2 - latest stable for block 5M
+- Parity 1.6.8 - should fail to wrong fork, doesn't support HF
+- Parity 1.6.9 - first with HF support
+- Parity 1.7.9 - latest stable for block 5M
+
+## Prepare
+
+----
+export PROJECT_ID=etcdevteam
+gcloud config set project $PROJECT_ID
+gcloud container clusters create fork --machine-type n1-standard-1 --num-nodes 6
+
+gcloud container clusters get-credentials fork
+
+gcloud compute disks create geth-3586 geth-4000 geth-4102 --type pd-standard --size 200GB
+./bin/build.sh geth
+kubectl create -f k8s/geth.rc.yaml
+
+gcloud compute disks create parity-168 parity-169 parity-179 --type pd-standard --size 200GB
+./bin/build.sh parity
+kubectl create -f k8s/parity.rc.yaml
+----
+
+## Watch
+
+### From local machine
+
+----
+pip install kubernetes
+python bin/status.py
+----
+
+### From web
+
+By default configured to https://fork.etcdevteam.com
+
+
+## Shutdown
+
+----
+gcloud container clusters delete fork
+----

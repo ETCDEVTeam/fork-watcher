@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: ServiceList
+metadata:
+  name: nodes-services
+items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: geth-3586-svc
+    spec:
+      ports:
+      - name: rpc
+        port: 8545
+      selector:
+        vendor: geth
+        version: "3.5.86"
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: geth-4000-svc
+    spec:
+      ports:
+      - name: rpc
+        port: 8545
+      selector:
+        vendor: geth
+        version: "4.0.0"
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: geth-4102-svc
+    spec:
+      ports:
+      - name: rpc
+        port: 8545
+      selector:
+        vendor: geth
+        version: "4.1.2"
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: parity-168-svc
+    spec:
+      ports:
+      - name: rpc
+        port: 8545
+      selector:
+        vendor: parity
+        version: "1.6.8"
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: parity-169-svc
+    spec:
+      ports:
+      - name: rpc
+        port: 8545
+      selector:
+        vendor: parity
+        version: "1.6.9"
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: parity-179-svc
+    spec:
+      ports:
+      - name: rpc
+        port: 8545
+      selector:
+        vendor: parity
+        version: "1.7.9"
