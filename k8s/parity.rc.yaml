@@ -6,7 +6,7 @@ items:
   - kind: ReplicationController
     apiVersion: v1
     metadata:
-      name: node-parity-168
+      name: node-parity-192
     spec:
       replicas: 1
       template:
@@ -14,7 +14,7 @@ items:
           labels:
             type: node
             vendor: parity
-            version: "1.6.8"
+            version: "1.9.2"
         spec:
           containers:
             - name: node
@@ -32,19 +32,19 @@ items:
                   protocol: UDP
               env:
                 - name: VERSION
-                  value: "1.6.8"
+                  value: "1.9.2"
               volumeMounts:
                 - mountPath: /data
                   name: blockchain
           volumes:
             - name: blockchain
               gcePersistentDisk:
-                pdName: parity-168
+                pdName: parity-192
                 fsType: ext4
   - kind: ReplicationController
     apiVersion: v1
     metadata:
-      name: node-parity-169
+      name: node-parity-193
     spec:
       replicas: 1
       template:
@@ -52,7 +52,7 @@ items:
           labels:
             type: node
             vendor: parity
-            version: "1.6.9"
+            version: "1.9.3"
         spec:
           containers:
             - name: node
@@ -70,19 +70,19 @@ items:
                   protocol: UDP
               env:
                 - name: VERSION
-                  value: "1.6.9"
+                  value: "1.9.3"
               volumeMounts:
                 - mountPath: /data
                   name: blockchain
           volumes:
             - name: blockchain
               gcePersistentDisk:
-                pdName: parity-169
+                pdName: parity-193
                 fsType: ext4
   - kind: ReplicationController
     apiVersion: v1
     metadata:
-      name: node-parity-179
+      name: node-parity-197
     spec:
       replicas: 1
       template:
@@ -90,7 +90,7 @@ items:
           labels:
             type: node
             vendor: parity
-            version: "1.7.9"
+            version: "1.9.7"
         spec:
           containers:
             - name: node
@@ -108,12 +108,50 @@ items:
                   protocol: UDP
               env:
                 - name: VERSION
-                  value: "1.7.9"
+                  value: "1.9.7"
               volumeMounts:
                 - mountPath: /data
                   name: blockchain
           volumes:
             - name: blockchain
               gcePersistentDisk:
-                pdName: parity-179
+                pdName: parity-197
+                fsType: ext4
+  - kind: ReplicationController
+    apiVersion: v1
+    metadata:
+      name: node-parity-1104
+    spec:
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            type: node
+            vendor: parity
+            version: "1.10.4"
+        spec:
+          containers:
+            - name: node
+              image: "etcdev/fork-parity:latest"
+              ports:
+                - name: rpc
+                  containerPort: 8545
+                - name: p2p
+                  hostPort: 30303
+                  containerPort: 30303
+                  protocol: TCP
+                - name: p2p-udp
+                  hostPort: 30303
+                  containerPort: 30303
+                  protocol: UDP
+              env:
+                - name: VERSION
+                  value: "1.10.4"
+              volumeMounts:
+                - mountPath: /data
+                  name: blockchain
+          volumes:
+            - name: blockchain
+              gcePersistentDisk:
+                pdName: parity-1104
                 fsType: ext4

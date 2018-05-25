@@ -18,7 +18,7 @@ function push {
     DOCKER_HUB=etcdev/fork-$NAME
 
     docker tag $ORG/fork-$NAME $DOCKER_HUB:latest
-    gcloud docker -- push $DOCKER_HUB:latest
+    docker push $DOCKER_HUB:latest
 }
 
 NAME=$1

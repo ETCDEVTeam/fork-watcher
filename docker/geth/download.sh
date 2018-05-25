@@ -3,17 +3,14 @@
 set -e
 
 VERSION=$1
+GIT=$2
 
 echo "-------------------------------------------------------------------------"
 echo "Download Geth $VERSION"
 echo " "
 echo "-------------------------------------------------------------------------"
 
-
-FNAME=geth-classic-linux-v${VERSION}.tar.gz
-if [ "$VERSION" = "3.5.86" ]; then
-    FNAME=geth-classic-linux-v3.5.0.86-db60074.tar.gz
-fi
+FNAME=geth-classic-linux-v${VERSION}-${GIT}.tar.gz
 
 mkdir -p /opt/geth
 wget --progress=dot:mega https://github.com/ethereumproject/go-ethereum/releases/download/v${VERSION}/$FNAME

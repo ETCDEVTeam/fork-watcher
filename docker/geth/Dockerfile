@@ -7,9 +7,9 @@ RUN  apt-get update \
 COPY download.sh /
 RUN chmod +x /download.sh
 
-RUN /download.sh 3.5.86
-RUN /download.sh 4.0.0
-RUN /download.sh 4.1.2
+RUN /download.sh 4.2.2 c127446
+RUN /download.sh 5.0.0 ac28808
+RUN /download.sh 5.3.0 55fb00b
 RUN ls -l /opt/geth
 
 COPY start.sh /

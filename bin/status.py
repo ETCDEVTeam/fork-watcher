@@ -77,12 +77,13 @@ def get_nodes_remote():
 
 def get_nodes_local():
     nodes = [
-        {"id": "geth-3586-svc", "vendor": "Geth", "version": "3.5.86"},
-        {"id": "geth-4000-svc", "vendor": "Geth", "version": "4.0.0"},
-        {"id": "geth-4102-svc", "vendor": "Geth", "version": "4.1.2"},
-        {"id": "parity-168-svc", "vendor": "Parity", "version": "1.6.8"},
-        {"id": "parity-169-svc", "vendor": "Parity", "version": "1.6.9"},
-        {"id": "parity-179-svc", "vendor": "Parity", "version": "1.7.9"},
+        {"id": "geth-422-svc", "vendor": "Geth", "version": "4.2.2"},
+        {"id": "geth-500-svc", "vendor": "Geth", "version": "5.0.0"},
+        {"id": "geth-530-svc", "vendor": "Geth", "version": "5.3.0"},
+        {"id": "parity-192-svc", "vendor": "Parity", "version": "1.9.2"},
+        {"id": "parity-193-svc", "vendor": "Parity", "version": "1.9.3"},
+        {"id": "parity-197-svc", "vendor": "Parity", "version": "1.9.7"},
+        {"id": "parity-1104-svc", "vendor": "Parity", "version": "1.10.4"},
     ]
     return nodes
 
@@ -131,7 +132,7 @@ def list():
         timedelta = time.mktime(now.timetuple()) - int(block["timestamp"], 16)
         print("Node %s %s at %d (%s ago)" % (pod["vendor"], pod["version"], int(height, 16), timediff(timedelta)))
         #hash = api.get_block(pod_id, height)["hash"]
-        for h in (1920000, 2500000, 3000000, 4999999, 5000000, 5000001):
+        for h in (1920000, 5000000, 5900000, 5900001):
             if int(height, 16) >= h:
                 b = get_block(pod["id"], hex(h))
                 if b:

@@ -9,7 +9,12 @@ echo "Download Parity $VERSION"
 echo " "
 echo "-------------------------------------------------------------------------"
 
-FNAME=parity_${VERSION}_amd64.deb
+FNAME=parity_${VERSION}_ubuntu_amd64.deb
+
+if [ "$VERSION" = "1.9.2" ]; then
+    FNAME=parity_${VERSION}_amd64.deb
+fi
+
 
 mkdir -p /opt/parity
 
