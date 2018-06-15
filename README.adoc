@@ -23,15 +23,16 @@ Currently configured for ECIP-1041 fork at block 5,900,000 with:
 ----
 export PROJECT_ID=etcdevteam
 gcloud config set project $PROJECT_ID
+
 gcloud container clusters create fork --machine-type n1-standard-1 --num-nodes 7
 
 gcloud container clusters get-credentials fork
 
-gcloud compute disks create geth-422 geth-500 geth-530 --type pd-standard --size 300GB
+gcloud compute disks create geth-422 geth-500 geth-530 --type pd-ssd --size 300GB
 ./bin/build.sh geth
 kubectl create -f k8s/geth.rc.yaml
 
-gcloud compute disks create parity-192 parity-193 parity-197 parity-1104 --type pd-standard --size 300GB
+gcloud compute disks create parity-192 parity-193 parity-197 parity-1104 --type pd-ssd --size 300GB
 ./bin/build.sh parity
 kubectl create -f k8s/parity.rc.yaml
 
@@ -57,4 +58,5 @@ By default configured to https://fork.etcdevteam.com
 
 ----
 gcloud container clusters delete fork
+gcloud compute disks delete geth-422 geth-500 geth-530 parity-192 parity-193 parity-197 parity-1104
 ----
