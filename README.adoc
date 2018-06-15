@@ -44,9 +44,11 @@ kubectl create -f k8s/status.svc.yaml
 
 ### From local machine
 
+Requires Python 3
+
 ----
 pip install kubernetes
-python bin/status.py
+python3 bin/status.py
 ----
 
 ### From web
