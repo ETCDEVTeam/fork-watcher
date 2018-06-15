@@ -1,7 +1,7 @@
 FROM ubuntu
 
 RUN  apt-get update \
-  && apt-get install -y wget \
+  && apt-get install -y wget curl \
   && rm -rf /var/lib/apt/lists/*
 
 COPY download.sh /
@@ -17,6 +17,7 @@ RUN chmod +x /start.sh
 
 EXPOSE 8545
 EXPOSE 30303
+EXPOSE 30303/UDP
 
 VOLUME /data
 
